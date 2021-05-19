@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { mediaDevices, RTCView } from 'react-native-webrtc';
 // import Peer from 'peerjs';
 // import Peer from 'react-native-peerjs';
 // import { io } from "socket.io-client";
@@ -7,16 +8,17 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export default function VideoCall() {
   const video = useRef(null);
-  const [videoSource, setVideoSource] = useState();
+  const [userStream, setUserStream] = useState();
 
   useEffect(() => {
     const fetchAndConnect = async () => {
       try {
         // map of localhost in VM is 10.0.2.2:3000 => localhost:3000
-        const response = await fetch('http://10.0.2.2:3000/api')
+/*         const response = await fetch('http://10.0.2.2:3000/api')
         const { roomId } = await response.json();
-        console.log(roomId)
-/* 
+        console.log(roomId) */
+        console.log('xd')
+/*  
         const peer = new Peer(undefined, {
           host: '10.0.2.2',
           secure: false,
@@ -41,8 +43,13 @@ export default function VideoCall() {
             setVideoSource(stream)
           }
         )
-
         console.log(peer) */
+        try {
+          const stream = await mediaDevices.getUserMedia({ video: true });
+          setUserStream(stream);
+        } catch(e) {
+          console.error(e);
+        }
       } catch(e) {
         console.log(e)
       }
@@ -51,9 +58,17 @@ export default function VideoCall() {
     fetchAndConnect()
   }, [])
 
+  console.log(userStream)
   return (
     <View style={styles.container}>
       <Text>VideoCall</Text>
+      <RTCView
+        style={{height: 300, width: 300}}
+        zOrder={20}
+        objectFit={"cover"}
+        streamURL={userStream?.toURL()}
+      />
+
     </View>
   );
 }
@@ -64,5 +79,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  stream: {
+    flex: 1
   }
 });
