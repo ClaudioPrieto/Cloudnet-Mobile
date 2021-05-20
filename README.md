@@ -14,6 +14,9 @@ Install node OSX
 Install expo-cli
 ```bash
   yarn add expo-cli
+  yarn add @react-navigation/stack
+  yarn add @react-navigation/native
+
 ```
 
 Run project (In root directory)
