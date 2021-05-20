@@ -1,32 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import {createStackNavigator} from "@react-navigation/stack"
+import {NavigationContainer} from "@react-navigation/native"
+
 import { StyleSheet, Text, View, Button, Image, SafeAreaView } from 'react-native';
 
+import {Home, Videocall, Catalog, Login} from './screens'
+
+const Stack = createStackNavigator();
+
 export default function App() {
-  const HandlePressEvent = () => console.log("Text pressed")
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Image 
-        style={{
-          height: 100,
-          width: 100
-        }}
-        source={require('./assets/cloudnet-logo.png')}
-      />
-      <Text onPress={HandlePressEvent}>Press me maggot!</Text>
-      <Button 
-        color="red"
-        title="Continue as Client" 
-        onPress={()=> console.log("Continue as client")}>
-      </Button>
-      <Button 
-        title="Login as Worker" 
-        onPress={()=> console.log("Logueado como trabajador, mandar a menú login")}>
-      </Button>
+    <NavigationContainer>
 
-      <StatusBar style="auto" />
-    </SafeAreaView>
+      <Stack.Navigator
+        screenOptions = {{
+          headerShown: false}}
+        initialRouteName ={"Home"}
+        >
+        <Stack.Screen name = "Home" component = {Home}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+
   );
 }
 
