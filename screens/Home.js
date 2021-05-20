@@ -12,9 +12,9 @@ const Home = () =>{
           height: 100,
           width: 100
         }}
-        source={require('./assets/cloudnet-logo.png')}
+        source={require('../assets/cloudnet-logo.png')}
       />
-      <Text onPress={HandlePressEvent}>This is the HOME Now wahahahah!</Text>
+      <Text onPress={HandlePressEvent}>Inicie sesión para continuar!</Text>
       <Button 
         color="red"
         title="Continue as Client" 

@@ -1,11 +1,21 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Image, Text} from 'react-native';
 
 const Catalog = () => {
     return (
         <View>
-            <Text>Hola mundo</Text>
+            <Text>Aquí irá el catálogo</Text>
+        
+
+            <Image 
+                style={{
+                height: 600,
+                width: 600
+                }}
+                source={require('../assets/catalog_example.png')}
+            />
         </View>
+        
     );
 }
 
