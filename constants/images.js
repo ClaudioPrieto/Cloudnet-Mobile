@@ -29,7 +29,29 @@ const sushi = require("../assets/images/sushi.jpg");
 const teh_c_peng = require("../assets/images/teh-c-peng.jpg");
 const tomato_pasta = require("../assets/images/tomato-pasta.jpg");
 
+const nokia3310 = require("../assets/images/nokia3310.webp");
+const ipad128gb = require("../assets/images/ipad128gb.webp");
+const rednote9pro = require("../assets/images/rednote9pro.jpg");
+const iphone11 = require("../assets/images/iphone11.jpeg");
+const motog9power = require("../assets/images/motog9power.jpg");
+
+
+
+const apple = require("../assets/images/apple.png");
+const motorola = require("../assets/images/motorola.png");
+const nokia = require("../assets/images/nokia.png");
+const xiaomi = require("../assets/images/xiaomi.png");
+
 export default {
+    apple,
+    motorola,
+    nokia,
+    xiaomi,
+    ipad128gb,
+    rednote9pro,
+    iphone11,
+    motog9power,
+    nokia3310,
     avatar_1,
     avatar_2,
     avatar_3,

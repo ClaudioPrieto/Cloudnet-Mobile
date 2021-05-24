@@ -21,7 +21,8 @@ Install expo-cli
   yarn add @react-navigation/stack
   yarn add @react-navigation/native
   yarn add @react-navigation/routers
-    yarn add @react-navigation/botton-tabs
+  yarn add @react-navigation/botton-tabs
+  yarn add react-native-gesture-handler
 
   yarn add react-native-screens
 
