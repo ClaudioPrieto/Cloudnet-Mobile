@@ -60,7 +60,7 @@ const Catalog = () => {
             categories: [1,5],
             priceRating: affordable,
             photo: images.nokia3310,
-            duration: "19.990",
+            price: "19.990",
 
         },
         {
@@ -70,7 +70,7 @@ const Catalog = () => {
             categories: [3, 5],
             priceRating: expensive,
             photo: images.iphone11,
-            duration: "799.990",
+            price: "799.990",
         },{
             id: 3,
             name: "Xiaomi RedNote 9 Pro",
@@ -78,7 +78,7 @@ const Catalog = () => {
             categories: [4, 5],
             priceRating: fairPrice,
             photo: images.rednote9pro,
-            duration: "199.990",
+            price: "199.990",
         },{
             id: 4,
             name: "Ipad 128GB",
@@ -86,7 +86,7 @@ const Catalog = () => {
             categories: [3, 6],
             priceRating: expensive,
             photo: images.ipad128gb,
-            duration: "699.990",
+            price: "699.990",
         },{
             id: 5,
             name: "Moto G9 Power",
@@ -94,7 +94,7 @@ const Catalog = () => {
             categories: [2, 5],
             priceRating: expensive,
             photo: images.motog9power,
-            duration: "249.990",
+            price: "249.990",
         },
 
     ]
@@ -283,7 +283,7 @@ const Catalog = () => {
                             ...styles.shadow
                         }}
                     >
-                        <Text style={{ ...FONTS.h4 }}>{item.duration}</Text>
+                        <Text style={{ ...FONTS.h4 }}>{item.price}</Text>
                     </View>
                 </View>
 

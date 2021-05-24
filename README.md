@@ -14,7 +14,7 @@ Install node OSX
   brew install node
 ```
 
-Install expo-cli
+Install dependencies
 
 ```bash
   yarn add expo-cli
@@ -33,3 +33,7 @@ Run project (In root directory)
 ```bash
   yarn start
 ```
+
+To run in web navigator, press W in the terminal
+
+To run in Android, scan the QR code with the
