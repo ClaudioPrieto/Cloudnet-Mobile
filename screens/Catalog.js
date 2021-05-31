@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, SafeAreaView, StyleSheet, TouchableOpacity, FlatList, Image, Text, Button, Animated} from 'react-native';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
-import {COLORS, FONTS, icons, images, SIZES} from "../constants"
+import {COLORS, icons, images, SIZES} from "../constants"
 
 const Catalog = ({navigation}) => {
     // Dummy Datas
@@ -13,8 +13,6 @@ const Catalog = ({navigation}) => {
             longitude: 110.36381866919922
         }
     }
-
-
 
     const categoryData = [
         {
@@ -83,6 +81,14 @@ const Catalog = ({navigation}) => {
             photo: images.rednote9pro,
             price: "199.990",
         },{
+            id: 8,
+            name: "Redmi Note 8 Pro",
+            rating: 4.5,
+            categories: [4, 5],
+            priceRating: fairPrice,
+            photo: images.rednote9pro,
+            price: "149.990",
+        },{
             id: 4,
             name: "Ipad 128GB",
             rating: 4.4,
@@ -142,10 +148,10 @@ const Catalog = ({navigation}) => {
     function renderHeader() {
         
         return (
-            <View style={{ flexDirection: 'row', height: 50 }}>
+            <View style={{ flexDirection: 'row' }}>
                 <TouchableOpacity
                     style={{
-                        width: 50,
+                        width: 49,
                         paddingLeft: SIZES.padding * 2,
                         justifyContent: 'center'
                     }}
@@ -160,7 +166,11 @@ const Catalog = ({navigation}) => {
                     />
                 </TouchableOpacity>
 
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <View 
+                    style={{ 
+                        flex: 1, 
+                        alignItems: 'center', 
+                        justifyContent: 'center' }}>
                     <View
                         style={{
                             width: '70%',
@@ -171,7 +181,7 @@ const Catalog = ({navigation}) => {
                             borderRadius: SIZES.radius
                         }}
                     >
-                        <Text style={{ ...FONTS.h3 }}>{currentLocation.streetName}</Text>
+                        <Text style={{ fontSize: 14 }}>{currentLocation.streetName}</Text>
                     </View>
                 </View>
 
@@ -235,7 +245,7 @@ const Catalog = ({navigation}) => {
                         style={{
                             marginTop: SIZES.padding,
                             color: (selectedCategory?.id == item.id) ? COLORS.white : COLORS.black,
-                            ...FONTS.body5
+                            fontSize: 11
                         }}
                     >
                         {item.name}
@@ -250,8 +260,8 @@ const Catalog = ({navigation}) => {
 
         return (
             <View style={{ padding: SIZES.padding * 2 }}>
-                <Text style={{ ...FONTS.h1 }}>Marcas</Text>
-                <Text style={{ ...FONTS.h1 }}>de Celular</Text>
+                <Text style={{ fontSize: 30 }}>Marcas</Text>
+                <Text style={{ fontSize: 30 }}>de Celular</Text>
 
                 <FlatList
                     data={categories}
@@ -276,15 +286,16 @@ const Catalog = ({navigation}) => {
                 {/* Image */}
                 <View
                     style={{
-                        marginBottom: SIZES.padding
+                        marginBottom: SIZES.padding,
+                        padding: 20,
                     }}
                 >
                     <Image
                         source={item.photo}
                         resizeMode="cover"
                         style={{
-                            width: "100%",
-                            height: 200,
+                            width: 300,
+                            height: 500,
                             borderRadius: SIZES.radius
                         }}
                     />
@@ -303,12 +314,12 @@ const Catalog = ({navigation}) => {
                             ...styles.shadow
                         }}
                     >
-                        <Text style={{ ...FONTS.h4 }}>{item.price}</Text>
+                        <Text style={{ fontSize: 16 }}>{item.price}</Text>
                     </View>
                 </View>
 
                 {/* Restaurant Info */}
-                <Text style={{ ...FONTS.body2 }}>{item.name}</Text>
+                <Text style={{ fontSize: 22 }}>{item.name}</Text>
 
                 <View
                     style={{
@@ -326,7 +337,7 @@ const Catalog = ({navigation}) => {
                             marginRight: 10
                         }}
                     />
-                    <Text style={{ ...FONTS.body3 }}>{item.rating}</Text>
+                    <Text style={{ fontSize: 18 }}>{item.rating}</Text>
 
                     {/* Categories */}
                     <View
@@ -342,8 +353,8 @@ const Catalog = ({navigation}) => {
                                         style={{ flexDirection: 'row' }}
                                         key={categoryId}
                                     >
-                                        <Text style={{ ...FONTS.body3 }}>{getCategoryNameById(categoryId)}</Text>
-                                        <Text style={{ ...FONTS.h3, color: COLORS.darkgray }}> . </Text>
+                                        <Text style={{ fontSize: 18 }}>{getCategoryNameById(categoryId)}</Text>
+                                        <Text style={{ fontSize: 18, color: COLORS.darkgray }}> . </Text>
                                     </View>
                                 )
                             })
@@ -355,7 +366,7 @@ const Catalog = ({navigation}) => {
                                 <Text
                                     key={priceRating}
                                     style={{
-                                        ...FONTS.body3,
+                                        fontSize: 18,
                                         color: (priceRating <= item.priceRating) ? COLORS.black : COLORS.darkgray
                                     }}
                                 >$</Text>
@@ -373,6 +384,7 @@ const Catalog = ({navigation}) => {
         return (
             <FlatList
                 data={restaurants}
+                numColumns={2}
                 keyExtractor={item => `${item.id}`}
                 renderItem={renderItem}
                 contentContainerStyle={{

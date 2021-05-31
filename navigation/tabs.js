@@ -3,7 +3,7 @@ import {View, Button, Image, TouchableOpacity} from 'react-native';
 import {createBottomTabNavigator, BottomTabBar} from "@react-navigation/bottom-tabs";
 import {COLORS, icons} from "../constants"
 
-import { Home, Catalog ,Videocall} from "../screens";
+import { Home, Catalog ,Videocall, Product} from "../screens";
 import { TabActions } from '@react-navigation/routers';
 
 const Tab = createBottomTabNavigator();
