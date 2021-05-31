@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, SafeAreaView, TouchableOpacity, Animated} from 'react-native';
-import {icons, COLORS, SIZES, FONTS} from '../constants';
+import {icons, COLORS, SIZES} from '../constants';
 
 const Product = ({route, navigation}) => {
     const scrollX = new Animated.Value(0);
@@ -112,8 +112,8 @@ const Product = ({route, navigation}) => {
                                     paddingHorizontal: SIZES.padding * 2
                                 }}
                             >
-                                <Text style={{ marginVertical: 10, textAlign: 'center', ...FONTS.h2 }}>{product?.name} - {product?.price}</Text>
-                                <Text style={{ ...FONTS.body3 }}>Insertar descripción</Text>
+                                <Text style={{ marginVertical: 10, textAlign: 'center', fontSize: 22 }}>{product?.name} - {product?.price}</Text>
+                                <Text style={{ fontSize: 18 }}>Insertar descripción</Text>
                             </View>
 
                             
