@@ -28,8 +28,10 @@ export const home = require("../assets/icons/home.png");
 export const camera = require("../assets/icons/camera.png");
 export const message = require("../assets/icons/message.png");
 
+export const helpcall = require("../assets/icons/helpcall.png");
 
 export default {
+    helpcall,
     home,
     camera,
     message,

@@ -4,7 +4,7 @@ import {View, Text, Image} from 'react-native';
 const Loginscreen = () => {
     return (
         <View>
-            <Text>Aqui irá el login</Text>
+            <Text>Dirijase a la tablet de asistencia número 3</Text>
             <Image 
                 style={{
                 height: 100,

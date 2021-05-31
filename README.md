@@ -23,8 +23,11 @@ Install dependencies
   yarn add @react-navigation/routers
   yarn add @react-navigation/botton-tabs
   yarn add react-native-gesture-handler
+  yarn add react-native-device-info
 
   yarn add react-native-screens
+  yarn add react-native-countdown-circle-timer
+  yarn add react-native-svg
 
 ```
 

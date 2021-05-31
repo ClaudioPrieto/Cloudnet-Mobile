@@ -29,6 +29,8 @@ const sushi = require("../assets/images/sushi.jpg");
 const teh_c_peng = require("../assets/images/teh-c-peng.jpg");
 const tomato_pasta = require("../assets/images/tomato-pasta.jpg");
 
+const loading = require("../assets/images/loading.gif");
+
 const nokia3310 = require("../assets/images/nokia3310.webp");
 const ipad128gb = require("../assets/images/ipad128gb.webp");
 const rednote9pro = require("../assets/images/rednote9pro.jpg");
@@ -43,6 +45,7 @@ const nokia = require("../assets/images/nokia.png");
 const xiaomi = require("../assets/images/xiaomi.png");
 
 export default {
+    loading,
     apple,
     motorola,
     nokia,

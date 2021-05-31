@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, SafeAreaView, StyleSheet, TouchableOpacity, FlatList, Image, Text} from 'react-native';
+import {View, SafeAreaView, StyleSheet, TouchableOpacity, FlatList, Image, Text, Button, Animated} from 'react-native';
+import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 import {COLORS, FONTS, icons, images, SIZES} from "../constants"
 
 const Catalog = () => {
@@ -12,6 +13,8 @@ const Catalog = () => {
             longitude: 110.36381866919922
         }
     }
+
+
 
     const categoryData = [
         {
@@ -103,6 +106,19 @@ const Catalog = () => {
     const [selectedCategory, setSelectedCategory] = React.useState(null)
     const [restaurants, setRestaurants] = React.useState(restaurantData)
     const [currentLocation, setCurrentLocation] = React.useState(initialCurrentLocation)
+    const [loading, setLoading] = React.useState(false)
+
+    function onPressResetCatalog(){
+
+        setRestaurants(null)
+        setLoading(true)
+    }
+
+    function onPressReloadCatalog(){
+
+        setRestaurants(restaurantData)
+        setLoading(false)
+    }
 
 
     function onSelectCategory(category) {
@@ -124,6 +140,7 @@ const Catalog = () => {
     }
 
     function renderHeader() {
+        
         return (
             <View style={{ flexDirection: 'row', height: 50 }}>
                 <TouchableOpacity
@@ -225,6 +242,10 @@ const Catalog = () => {
                     </Text>
                 </TouchableOpacity>
             )
+        }
+
+        if (loading) {    
+            return (<View></View>);  
         }
 
         return (
@@ -346,6 +367,10 @@ const Catalog = () => {
             </TouchableOpacity>
         )
 
+        if (loading) {    
+            return (<View></View>);  
+        }
+
         return (
             <FlatList
                 data={restaurants}
@@ -364,11 +389,57 @@ const Catalog = () => {
             {renderHeader()}
             {renderMainCategories()}
             {renderRestaurantList()}
+
+
+            {loading ? 
+                <>
+                    <CountdownCircleTimer
+                        isPlaying
+                        duration={1}
+                        onComplete={() => {
+                          // do your stuff here
+                          return [true, 1000] // repeat animation in 1.5 seconds
+                        }}
+                        colors={[
+                          ['#004777', 0.4],
+                          ['#F7B801', 0.4],
+                          ['#A30000', 0.2],
+                        ]}
+                      >
+                        {({ remainingTime, animatedColor }) => (
+                          <Animated.Text style={{ color: animatedColor }}>
+                            
+                          </Animated.Text>
+                        )}
+                      </CountdownCircleTimer>
+                      <Button
+                          onPress={onPressReloadCatalog}
+                          title="Simular llegada datos API"
+                          color="#841584"
+                          accessibilityLabel="Reiniciar Catálogo"
+                        />
+                </>
+
+            : <Button
+              onPress={onPressResetCatalog}
+              title="Reiniciar Catálogo"
+              color="#841584"
+              accessibilityLabel="Reiniciar Catálogo"
+            /> }
+
+            
+
         </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
+    centeredView: {
+        justifyContent: "center",
+        alignItems: "center",
+        height: 100,
+        width: 100,
+    },
     container: {
         flex: 1,
         backgroundColor: COLORS.lightGray4
