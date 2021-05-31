@@ -28,6 +28,7 @@ const UrgeWithPleasureComponent = () => (
 const Videocall = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [timer, setTimer] = useState(0);
+  const [solicitud, setSolicitud] = useState(false);
 
   return (
     <View style={styles.centeredView}>
