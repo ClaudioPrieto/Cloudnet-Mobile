@@ -3,7 +3,7 @@ import {View, SafeAreaView, StyleSheet, TouchableOpacity, FlatList, Image, Text,
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 import {COLORS, FONTS, icons, images, SIZES} from "../constants"
 
-const Catalog = () => {
+const Catalog = ({navigation}) => {
     // Dummy Datas
 
     const initialCurrentLocation = {
@@ -265,13 +265,12 @@ const Catalog = () => {
         )
     }
 
-    function renderRestaurantList() {
+    function renderDeviceList() {
         const renderItem = ({ item }) => (
             <TouchableOpacity
                 style={{ marginBottom: SIZES.padding * 2 }}
-                onPress={() => navigation.navigate("Restaurant", {
-                    item,
-                    currentLocation
+                onPress={() => navigation.navigate("Product", {
+                    item
                 })}
             >
                 {/* Image */}
@@ -388,7 +387,7 @@ const Catalog = () => {
         <SafeAreaView style={styles.container}>
             {renderHeader()}
             {renderMainCategories()}
-            {renderRestaurantList()}
+            {renderDeviceList()}
 
 
             {loading ? 
@@ -397,7 +396,7 @@ const Catalog = () => {
                         isPlaying
                         duration={1}
                         onComplete={() => {
-                          // do your stuff here
+                          onPressReloadCatalog()
                           return [true, 1000] // repeat animation in 1.5 seconds
                         }}
                         colors={[
@@ -414,7 +413,7 @@ const Catalog = () => {
                       </CountdownCircleTimer>
                       <Button
                           onPress={onPressReloadCatalog}
-                          title="Simular llegada datos API"
+                          title="Simulando llegada datos API"
                           color="#841584"
                           accessibilityLabel="Reiniciar Catálogo"
                         />
