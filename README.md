@@ -37,6 +37,20 @@ Run project (In root directory)
   yarn start
 ```
 
-To run in web navigator, press W in the terminal
+Si surge el siguiente error
 
-To run in Android, scan the QR code with the
+```
+Error: ENOSPC: System limit for number of file watchers reached
+```
+
+Es necesario correr el siguiente comando(Testeado en UBUNTU 18.04)
+```
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+```
+
+Para correr en el navegador web, presionar W en la terminal, luego seleccionar la opción "run in web browser" en la ventana que aparezca.
+
+
+Para correr en Android Expo GO, y escanear el código QR
+
+Para correr en iOS, usar la aplicación Expo Studio y escanear el código QR.
