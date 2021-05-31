@@ -1,22 +1,42 @@
 # Cloudnet Mobile App
 
 ## Setup
+
 Install Yarn
+
 ```bash
   npm install --global yarn
 ```
 
 Install node OSX
+
 ```bash
   brew install node
 ```
 
-Install expo-cli
+Install dependencies
+
 ```bash
   yarn add expo-cli
+  yarn add @react-navigation/stack
+  yarn add @react-navigation/native
+  yarn add @react-navigation/routers
+  yarn add @react-navigation/botton-tabs
+  yarn add react-native-gesture-handler
+  yarn add react-native-device-info
+
+  yarn add react-native-screens
+  yarn add react-native-countdown-circle-timer
+  yarn add react-native-svg
+
 ```
 
 Run project (In root directory)
+
 ```bash
   yarn start
 ```
+
+To run in web navigator, press W in the terminal
+
+To run in Android, scan the QR code with the
