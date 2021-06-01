@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet, SafeAreaView, TouchableOpacity, Animated} from 'react-native';
+import {View, Text, Image, StyleSheet, SafeAreaView, TouchableOpacity, Animated, FlatList} from 'react-native';
 import {icons, COLORS, SIZES, FONTS} from '../constants';
 
 const Product = ({route, navigation}) => {
@@ -112,6 +112,16 @@ const Product = ({route, navigation}) => {
                                 <Text style={{ marginVertical: 10, textAlign: 'center', fontSize: 22 }}>{product?.name} - {product?.price}</Text>
                                 <Text style={{ fontSize: 18 }}>Insertar descripción</Text>
                             </View>
+                            <View>
+                                <FlatList
+                                    data={product?.planes}
+                                    vertical
+                                    showsHorizontalScrollIndicator={false}
+                                    keyExtractor={item => `${item.planid}`}
+                                    renderItem={renderItem}
+                                    contentContainerStyle={{ paddingVertical: SIZES.padding * 2 }}
+                                />
+                            </View>
 
                             
                         </View>
@@ -121,11 +131,19 @@ const Product = ({route, navigation}) => {
         )
     }
 
+    const renderItem = ({item}) => (
+        <View>
+            <Text>Plan {item.planid} meses: {item.planid} cuotas de {(parseInt(product?.price)/item.planid).toFixed(3)}</Text>
+            <Text>Internet: {item.planinternet}</Text>
+        </View>
+        )
+
     return (
         <SafeAreaView style={styles.container}>
             
             {renderHeader()}
             {renderFoodInfo()}
+            
 
         </SafeAreaView>
     );
