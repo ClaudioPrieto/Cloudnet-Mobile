@@ -2,6 +2,8 @@ import React from 'react';
 import {View, SafeAreaView, StyleSheet, TouchableOpacity, FlatList, Image, Text, Button, Animated} from 'react-native';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 import {COLORS, FONTS, icons, images, SIZES} from "../constants"
+import * as Device from 'expo-device';
+
 
 const Catalog = ({navigation}) => {
     // Dummy Datas
@@ -13,7 +15,6 @@ const Catalog = ({navigation}) => {
             longitude: 110.36381866919922
         }
     }
-
 
 
     const categoryData = [
@@ -64,7 +65,48 @@ const Catalog = ({navigation}) => {
             priceRating: affordable,
             photo: images.nokia3310,
             price: "19.990",
+            camera: "NO",
+            planes:[
+                    {   
+                        planid:3,
+                        pagocontado:"no",
+                        planinternet:"10GB",
+                    },
+                    {   
+                        planid:6,
+                        planinternet:"20GB",
+                    },
+                    {   
+                        planid:12,
+                        planinternet:"40GB",
+                    }
+            ]
 
+        },
+        {
+            id: 8,
+            name: "Redmi Note 8 Pro",
+            rating: 4.5,
+            categories: [4, 5],
+            priceRating: fairPrice,
+            photo: images.rednote9pro,
+            price: "149.990",
+            camera: "8mp",
+            planes:[
+                    {   
+                        planid:3,
+                        pagocontado:"no",
+                        planinternet:"10GB",
+                    },
+                    {   
+                        planid:6,
+                        planinternet:"20GB",
+                    },
+                    {   
+                        planid:12,
+                        planinternet:"40GB",
+                    }
+            ]
         },
         {
             id: 2,
@@ -74,6 +116,22 @@ const Catalog = ({navigation}) => {
             priceRating: expensive,
             photo: images.iphone11,
             price: "799.990",
+            camera: "12mp",
+            planes:[
+                    {   
+                        planid:3,
+                        pagocontado:"no",
+                        planinternet:"10GB",
+                    },
+                    {   
+                        planid:6,
+                        planinternet:"20GB",
+                    },
+                    {   
+                        planid:12,
+                        planinternet:"40GB",
+                    }
+            ]
         },{
             id: 3,
             name: "Xiaomi RedNote 9 Pro",
@@ -82,6 +140,22 @@ const Catalog = ({navigation}) => {
             priceRating: fairPrice,
             photo: images.rednote9pro,
             price: "199.990",
+            camera: "9mp",
+            planes:[
+                    {   
+                        planid:3,
+                        pagocontado:"no",
+                        planinternet:"10GB",
+                    },
+                    {   
+                        planid:6,
+                        planinternet:"20GB",
+                    },
+                    {   
+                        planid:12,
+                        planinternet:"40GB",
+                    }
+            ]
         },{
             id: 4,
             name: "Ipad 128GB",
@@ -90,6 +164,22 @@ const Catalog = ({navigation}) => {
             priceRating: expensive,
             photo: images.ipad128gb,
             price: "699.990",
+            camera: "9mp",
+            planes:[
+                    {   
+                        planid:3,
+                        pagocontado:"no",
+                        planinternet:"10GB",
+                    },
+                    {   
+                        planid:6,
+                        planinternet:"20GB",
+                    },
+                    {   
+                        planid:12,
+                        planinternet:"40GB",
+                    }
+            ]
         },{
             id: 5,
             name: "Moto G9 Power",
@@ -98,6 +188,22 @@ const Catalog = ({navigation}) => {
             priceRating: expensive,
             photo: images.motog9power,
             price: "249.990",
+            camera: "8mp",
+            planes:[
+                    {   
+                        planid:3,
+                        pagocontado:"no",
+                        planinternet:"10GB",
+                    },
+                    {   
+                        planid:6,
+                        planinternet:"20GB",
+                    },
+                    {   
+                        planid:12,
+                        planinternet:"40GB",
+                    }
+            ]
         },
 
     ]
@@ -107,6 +213,8 @@ const Catalog = ({navigation}) => {
     const [restaurants, setRestaurants] = React.useState(restaurantData)
     const [currentLocation, setCurrentLocation] = React.useState(initialCurrentLocation)
     const [loading, setLoading] = React.useState(false)
+
+    const [testingText, setTestingText] = React.useState("")
 
     function onPressResetCatalog(){
 
@@ -181,9 +289,10 @@ const Catalog = ({navigation}) => {
                         paddingRight: SIZES.padding * 2,
                         justifyContent: 'center'
                     }}
+                    onPress={() => goToThisDevice()}
                 >
                     <Image
-                        source={icons.basket}
+                        source={icons.phone}
                         resizeMode="contain"
                         style={{
                             width: 30,
@@ -252,6 +361,7 @@ const Catalog = ({navigation}) => {
             <View style={{ padding: SIZES.padding * 2 }}>
                 <Text style={{ ...FONTS.h1 }}>Marcas</Text>
                 <Text style={{ ...FONTS.h1 }}>de Celular</Text>
+                <Text style={{ ...FONTS.h3 }}>{testingText}</Text>
 
                 <FlatList
                     data={categories}
@@ -263,6 +373,32 @@ const Catalog = ({navigation}) => {
                 />
             </View>
         )
+    }
+
+    function goToThisDevice(){
+
+        let nameOfDevice = Device.modelName;
+
+        let letsGo = false
+
+        for(var item in restaurants){
+            if (item.name == nameOfDevice){
+                setTimeout(function () {
+                    setTestingText(item.name)
+                }, 5000);
+
+
+
+                
+            }
+        }
+        if (letsGo) {
+            navigation.navigate("Product", {item})
+            setTestingText( "true" )
+        } else {
+            setTestingText( "false" )
+        }
+        
     }
 
     function renderDeviceList() {

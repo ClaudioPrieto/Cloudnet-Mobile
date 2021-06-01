@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Button, Image, SafeAreaView } from 'react-native';
+import * as Device from 'expo-device';
 
 const HandlePressEvent = () => console.log("Text pressed")
 
 const Home = () =>{
+  const [model, setModel] = React.useState("")
+
   return (
     <SafeAreaView style={styles.container}>
       <Image 
@@ -14,15 +17,10 @@ const Home = () =>{
         }}
         source={require('../assets/cloudnet-logo.png')}
       />
-      <Text onPress={HandlePressEvent}>Inicie sesión para continuar!</Text>
+      <Text onPress={HandlePressEvent}>Modelo del dispositivo:{model}</Text>
       <Button 
-        color="red"
-        title="Continue as Client" 
-        onPress={()=> console.log("Continue as client")}>
-      </Button>
-      <Button 
-        title="Login as Worker" 
-        onPress={()=> console.log("Logueado como trabajador, mandar a menú login")}>
+        title="Obtener información del dispositivo" 
+        onPress={()=> setModel( Device.modelName )}>
       </Button>
 
       <StatusBar style="auto" />
