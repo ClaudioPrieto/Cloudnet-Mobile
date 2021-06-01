@@ -19,7 +19,7 @@ const Tabs = () => {
         >
 
             <Tab.Screen
-                name = "Home"
+                name = "Inicio"
                 component = {Home}
                 options={{
                     tabBarIcon:({focused}) =>(

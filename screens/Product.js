@@ -4,69 +4,133 @@ import {icons, COLORS, SIZES, FONTS} from '../constants';
 
 const Product = ({route, navigation}) => {
 
-	const [product, setProduct] = React.useState(null);
+    const scrollX = new Animated.Value(0);
+    const [product, setProduct] = React.useState(null);
 
-	React.useEffect(() => {
-		let {item} = route.params;
+    React.useEffect(() => {
+        let {item} = route.params;
 
-		setProduct(item)
-	})
+        setProduct(item)
+    })
 
-	function renderHeader(){
-		return(
-			<View style = {{flexDirection:'row'}}>
-
-				<TouchableOpacity
-					style={{
-						width:50,
-						paddingLeft:SIZES.padding * 2,
-						justifyContent: 'center'
-						}}
-					onPress={() => navigation.goBack()}
-				>
-					<Image
-                        source = {icons.back}
-                        resizeMode = "contain"
+    function renderHeader() {
+        
+        return (
+            <View style={{ flexDirection: 'row', height: 50 }}>
+                <TouchableOpacity
+                    style={{
+                        width: 50,
+                        paddingLeft: SIZES.padding * 2,
+                        justifyContent: 'center'
+                    }}
+                    onPress={() => navigation.goBack()}
+                >
+                    <Image
+                        source={icons.back}
+                        resizeMode="contain"
                         style={{
-                            width:30,
-                            height:30,
-                            }}
-                    ></Image>
-				</TouchableOpacity>
-				
+                            width: 30,
+                            height: 30
+                        }}
+                    />
+                </TouchableOpacity>
 
-            <View style={styles.container2} >
-                <View
-                   style={{
-                            height: 50,
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <View
+                        style={{
+                            width: '70%',
+                            height: "100%",
+                            backgroundColor: COLORS.lightGray3,
                             alignItems: 'center',
                             justifyContent: 'center',
-                            paddingHorizontal: SIZES.padding * 3,
-                            borderRadius: SIZES.radius,
-                            backgroundColor: COLORS.lightGray3
-                        }} 
-                >
-                    <Text style={{ ...FONTS.h3 }}>{product?.name}</Text>
-
+                            borderRadius: SIZES.radius
+                        }}
+                    >
+                        <Text style={{ ...FONTS.h3 }}>{product?.name}</Text>
+                    </View>
                 </View>
-                    
+
+                <TouchableOpacity
+                    style={{
+                        width: 50,
+                        paddingRight: SIZES.padding * 2,
+                        justifyContent: 'center'
+                    }}
+                >
+                    <Image
+                        source={icons.basket}
+                        resizeMode="contain"
+                        style={{
+                            width: 30,
+                            height: 30
+                        }}
+                    />
+                </TouchableOpacity>
             </View>
-        </View>
+        )
+    }
 
+    function renderFoodInfo() {
+        return (
+            <Animated.ScrollView
+                horizontal
+                pagingEnabled
+                scrollEventThrottle={16}
+                snapToAlignment="center"
+                showsHorizontalScrollIndicator={false}
+                onScroll={Animated.event([
+                    { nativeEvent: { contentOffset: { x: scrollX } } }
+                ], { useNativeDriver: false })}
+            >
+                {
+                    
+                        <View
+                            style={{ alignItems: 'center' }}
+                        >
+                            <View >
+                                {/* Food Image */}
+                                <Image
+                                    source={product?.photo}
+                                    resizeMode="cover"
+                                    style={{
+                                        width: 300,
+                                        height: 500
+                                    }}
+                                />
+                               
+                            </View>
 
-		)
-			
+                            {/* Name & Description */}
+                            <View
+                                style={{
+                                    width: SIZES.width,
+                                    alignItems: 'center',
+                                    marginTop: 15,
+                                    paddingHorizontal: SIZES.padding * 2
+                                }}
+                            >
+                                <Text style={{ marginVertical: 10, textAlign: 'center', fontSize: 22 }}>{product?.name} - {product?.price}</Text>
+                                <Text style={{ fontSize: 18 }}>Insertar descripción</Text>
+                            </View>
 
-	}
+                            
+                        </View>
+                    
+                }
+            </Animated.ScrollView>
+        )
+    }
 
     return (
         <SafeAreaView style={styles.container}>
-        	
-        	{renderHeader()}
+            
+            {renderHeader()}
+            {renderFoodInfo()}
 
         </SafeAreaView>
     );
 }
+
 
 const styles = StyleSheet.create({
     centeredView: {
@@ -77,7 +141,9 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: COLORS.lightGray4
+        backgroundColor: COLORS.lightGray4,
+        justifyContent: "center",
+        alignItems: "center",
     },
     containerImage: {
         flex: 1,

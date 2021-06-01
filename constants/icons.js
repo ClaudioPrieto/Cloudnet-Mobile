@@ -30,7 +30,10 @@ export const message = require("../assets/icons/message.png");
 
 export const helpcall = require("../assets/icons/helpcall.png");
 
+export const phone = require("../assets/icons/phone.png");
+
 export default {
+    phone,
     helpcall,
     home,
     camera,
