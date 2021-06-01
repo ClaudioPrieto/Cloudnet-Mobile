@@ -55,10 +55,10 @@ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo s
 Si surge el siguiente error(macOS Catalina)
 
 ```
-Error: ENOSPC: System limit for number of file watchers reached
+Error: EMFILE, too many open files
 ```
 
-Es necesario correr el siguiente comando(Testeado en UBUNTU 18.04)
+Es necesario correr el siguiente comando
 ```
 brew reinstall watchman
 ```
