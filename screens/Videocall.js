@@ -11,13 +11,35 @@ const Videocall = () => {
   const [espera, setEspera] = useState(true);
   const [isPlaying, setIsPlaying] = React.useState(true)
 
-  const UrgeWithPleasureComponent = () => (
+  const firstCountdown = () => (
     <CountdownCircleTimer
       isPlaying={isPlaying}
       duration={5}
       onComplete={() => {
         onPressNoHelper()
         return [true, 1500] // repeat animation in 1.5 seconds
+      }}
+      colors={[
+        ['#004777', 0.4],
+        ['#F7B801', 0.4],
+        ['#A30000', 0.2],
+      ]}
+    >
+      {({ remainingTime, animatedColor }) => (
+        <Animated.Text style={{ color: animatedColor }}>
+          {remainingTime}
+        </Animated.Text>
+      )}
+    </CountdownCircleTimer>
+  )
+
+  const secondCountdown = () => (
+    <CountdownCircleTimer
+      isPlaying={isPlaying}
+      duration={5}
+      onComplete={() => {
+        resetStates()
+         // repeat animation in 1.5 seconds
       }}
       colors={[
         ['#004777', 0.4],
@@ -50,9 +72,15 @@ const Videocall = () => {
         <TextInput 
           placeholder="Email" />
         <TextInput
-          secureTextEntry={true}
-          placeholder="Password"
+          placeholder="Telefono"
         />
+
+          <Pressable
+          style={[styles.button, styles.buttonOpen]}
+          onPress={() => setModal2Visible(true)}
+        >
+          <Text style={styles.textStyle}>Enviar información.</Text>
+        </Pressable>
       </View>
       )
   }
@@ -77,6 +105,8 @@ const Videocall = () => {
     setSolicitud(false)
     setEspera(true)
     setIsPlaying(true)
+    setModal2Visible(false)
+    setModalVisible(false)
 
   }
 
@@ -86,7 +116,7 @@ const Videocall = () => {
     }
 
     return (
-      <Text></Text>
+      <Text>Espere a ser atendido por un ejecutivo</Text>
       )
   }
 
@@ -106,23 +136,43 @@ const Videocall = () => {
           <View style={styles.modalView}>
 
             {receivedHelp()}
-            {UrgeWithPleasureComponent()}
+            {firstCountdown()}
 
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
+              onPress={() => resetStates()}
             >
               <Text style={styles.textStyle}>Cerrar ventana</Text>
             </Pressable>
 
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => onPressHelper()}
+              onPress={() => {onPressHelper();setIsPlaying(false) }}
             >
               <Text style={styles.textStyle}>Simular atención de ejecutivo</Text>
             </Pressable>
 
 
+
+          </View>
+        </View>
+      </Modal>
+
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modal2Visible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+
+            {secondCountdown()}
+            <Text>Gracias por enviar sus datos. Pronto recibirá un email</Text>
 
           </View>
         </View>
@@ -136,15 +186,6 @@ const Videocall = () => {
       </Pressable>
 
       {renderForm()}
-
-
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => resetStates()}
-      >
-        <Text style={styles.textStyle}>Reiniciar Estados</Text>
-      </Pressable>
-
 
     </View>
   );

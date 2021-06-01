@@ -375,30 +375,21 @@ const Catalog = ({navigation}) => {
         )
     }
 
+    function esItem(item) {
+        return item.name == Device.modelName;
+    }
+
     function goToThisDevice(){
 
-        let nameOfDevice = Device.modelName;
+        var resto = restaurants.find(esItem)
 
-        let letsGo = false
+        if (resto){
+            navigation.navigate("Product", {
+                    resto})
 
-        for(var item in restaurants){
-            if (item.name == nameOfDevice){
-                setTimeout(function () {
-                    setTestingText(item.name)
-                }, 5000);
-
-
-
-                
-            }
         }
-        if (letsGo) {
-            navigation.navigate("Product", {item})
-            setTestingText( "true" )
-        } else {
-            setTestingText( "false" )
-        }
-        
+
+        setTestingText(Device.modelName)       
     }
 
     function renderDeviceList() {

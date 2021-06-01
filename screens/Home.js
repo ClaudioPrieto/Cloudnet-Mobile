@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, Image, SafeAreaView } from 'react-native';
 import * as Device from 'expo-device';
 
+
 const HandlePressEvent = () => console.log("Text pressed")
 
 const Home = () =>{
