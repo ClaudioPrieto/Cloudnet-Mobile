@@ -209,7 +209,6 @@ const Catalog = ({navigation}) => {
     ]
     
     api_calls.getArticlesFromApi();
-    console.log("AQUIIIIII")
 
     const [categories, setCategories] = React.useState(categoryData)
     const [selectedCategory, setSelectedCategory] = React.useState(null)
