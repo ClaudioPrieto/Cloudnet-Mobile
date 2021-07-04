@@ -10,11 +10,11 @@ export async function getArticlesFromApi(){
         }}
     )
     .then(response => {
-        console.log(response);
+        // console.log(response);
         return response.json();
     })
     .then(data =>{
-        console.log(data);
+        // console.log(data);
         return data;
     }).catch(err => {
     console.log("Error Reading data " + err);
@@ -32,11 +32,11 @@ async function getArticlesFromApi_async(){
         }}
     )
     .then(response => {
-        console.log(response);
+        // console.log(response);
         return response.json();
     })
     .then(data =>{
-        console.log(data);
+        // console.log(data);
         return data;
     }).catch(err => {
     console.log("Error Reading data " + err);
@@ -46,7 +46,7 @@ async function getArticlesFromApi_async(){
 export async function match_device(device){
     getArticlesFromApi_async().then(device_list =>{
 
-        console.log(device_list);
+        // console.log(device_list);
         if (device_list != []) {
             device_list.forEach(item => {
                 if (item.name == device) {
