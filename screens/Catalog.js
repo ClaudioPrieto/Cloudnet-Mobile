@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, SafeAreaView, StyleSheet, TouchableOpacity, FlatList, Image, Text, Button, Animated} from 'react-native';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
-import {COLORS, FONTS, icons, images, SIZES} from "../constants"
+import {COLORS, FONTS, icons, images, SIZES, api_calls} from "../constants"
 import * as Device from 'expo-device';
 
 
@@ -205,12 +205,15 @@ const Catalog = ({navigation}) => {
                     }
             ]
         },
-
+        
     ]
+    
+    api_calls.getArticlesFromApi();
 
     const [categories, setCategories] = React.useState(categoryData)
     const [selectedCategory, setSelectedCategory] = React.useState(null)
     const [restaurants, setRestaurants] = React.useState(restaurantData)
+    // const [restaurants, setRestaurants] = React.useState(api_calls.getArticlesFromApi())
     const [currentLocation, setCurrentLocation] = React.useState(initialCurrentLocation)
     const [loading, setLoading] = React.useState(false)
 
@@ -246,6 +249,7 @@ const Catalog = ({navigation}) => {
 
         return ""
     }
+
 
     function renderHeader() {
         
@@ -547,7 +551,7 @@ const Catalog = ({navigation}) => {
                 </>
 
             : <Button
-              onPress={onPressResetCatalog}
+              onPress={onPressReloadCatalog}
               title="Reiniciar Catálogo"
               color="#841584"
               accessibilityLabel="Reiniciar Catálogo"
