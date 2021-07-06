@@ -9,7 +9,7 @@ const Videocall = ({navigation}) =>{
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>Por favor diríjase a la tablet mas cercana para solicitar asistencia</Text>
+      <Text style={styles.text}>Por favor diríjase a la tablet numero {Math.floor(Math.random() * 3) + 1} de la tienda para recibir asistencia</Text>
     </SafeAreaView>
   );
 }
@@ -22,9 +22,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
+    padding: 2,
     margin: 'auto',
-    'font-size': '20px',
-    'text-align': 'center'
+    fontSize: 20,
+    textAlign: 'center'
   }
 });
 
