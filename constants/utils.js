@@ -1,5 +1,5 @@
 export async function getArticlesFromApi(){
-    fetch('http://cloudnet-backoffice.tk:8000/api/devices/', {
+    fetch('https://swdev9.ing.puc.cl/api/devices/', {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -14,14 +14,14 @@ export async function getArticlesFromApi(){
         return response.json();
     })
     .then(data =>{
-        // console.log(data);
+        console.log(data);
         return data;
     }).catch(err => {
     console.log("Error Reading data " + err);
     });
 }
 async function getArticlesFromApi_async(){
-    return fetch('http://cloudnet-backoffice.tk:8000/api/devices/', {
+    return fetch('https://swdev9.ing.puc.cl/api/devices/', {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -44,7 +44,7 @@ async function getArticlesFromApi_async(){
 }
 
 export async function match_device(device){
-    getArticlesFromApi_async().then(device_list =>{
+    return getArticlesFromApi_async().then(device_list =>{
 
         // console.log(device_list);
         if (device_list != []) {
@@ -55,6 +55,9 @@ export async function match_device(device){
             });
         }
         return null;
+    }).catch(err => {
+        console.log("Error Reading data " + err);
+        return NaN
     })
 }
 

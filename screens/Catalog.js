@@ -222,12 +222,14 @@ const Catalog = ({navigation}) => {
     function onPressResetCatalog(){
 
         setRestaurants(null)
+        setSelectedCategory(null)
         setLoading(true)
     }
 
     function onPressReloadCatalog(){
 
         setRestaurants(restaurantData)
+        setSelectedCategory(null)
         setLoading(false)
     }
 
@@ -402,7 +404,8 @@ const Catalog = ({navigation}) => {
                 style={{ marginBottom: SIZES.padding * 2 }}
                 onPress={() => navigation.navigate("Product", {
                     item
-                })}
+                })
+            }
             >
                 {/* Image */}
                 <View
@@ -438,7 +441,7 @@ const Catalog = ({navigation}) => {
                     </View>
                 </View>
 
-                {/* Restaurant Info */}
+                {/* Device Info */}
                 <Text style={{ ...FONTS.body2 }}>{item.name}</Text>
 
                 <View
